@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { MobileNavToggle } from '../components/MobileNavToggle'
 import { SaleForm } from '../components/SaleForm'
 import { useSalesOutlet } from '../hooks/useSalesOutlet'
 import { isOverdueSale } from '../lib/invoiceFilters'
@@ -110,9 +111,12 @@ export function SaleDetailPage() {
     return (
       <div className="invoice-shell invoice-shell--detail">
         <header className="invoice-app-bar">
-          <Link to="/" className="icon-btn" aria-label="Back">
-            <IconBack />
-          </Link>
+          <div className="invoice-app-bar-start">
+            <MobileNavToggle />
+            <Link to="/" className="icon-btn" aria-label="Back">
+              <IconBack />
+            </Link>
+          </div>
           <h1 className="invoice-app-title">Invoice</h1>
           <div className="invoice-app-spacer" aria-hidden />
         </header>
@@ -130,9 +134,12 @@ export function SaleDetailPage() {
     return (
       <div className="invoice-shell invoice-shell--detail">
         <header className="invoice-app-bar">
-          <Link to="/" className="icon-btn" aria-label="Back">
-            <IconBack />
-          </Link>
+          <div className="invoice-app-bar-start">
+            <MobileNavToggle />
+            <Link to="/" className="icon-btn" aria-label="Back">
+              <IconBack />
+            </Link>
+          </div>
           <h1 className="invoice-app-title">Invoice</h1>
           <div className="invoice-app-spacer" aria-hidden />
         </header>
@@ -149,9 +156,12 @@ export function SaleDetailPage() {
     return (
       <div className="invoice-shell invoice-shell--detail">
         <header className="invoice-app-bar">
-          <Link to="/" className="icon-btn" aria-label="Back">
-            <IconBack />
-          </Link>
+          <div className="invoice-app-bar-start">
+            <MobileNavToggle />
+            <Link to="/" className="icon-btn" aria-label="Back">
+              <IconBack />
+            </Link>
+          </div>
           <h1 className="invoice-app-title">Invoice</h1>
           <div className="invoice-app-spacer" aria-hidden />
         </header>
@@ -184,14 +194,17 @@ export function SaleDetailPage() {
     return (
       <div className="invoice-shell invoice-shell--detail">
         <header className="invoice-app-bar">
-          <button
-            type="button"
-            className="icon-btn"
-            aria-label="Cancel editing"
-            onClick={() => setEditing(false)}
-          >
-            <IconBack />
-          </button>
+          <div className="invoice-app-bar-start">
+            <MobileNavToggle />
+            <button
+              type="button"
+              className="icon-btn"
+              aria-label="Cancel editing"
+              onClick={() => setEditing(false)}
+            >
+              <IconBack />
+            </button>
+          </div>
           <h1 className="invoice-app-title">Edit</h1>
           <div className="invoice-app-spacer" aria-hidden />
         </header>
@@ -218,9 +231,12 @@ export function SaleDetailPage() {
   return (
     <div className="invoice-shell invoice-shell--detail">
       <header className="invoice-app-bar">
-        <Link to="/" className="icon-btn" aria-label="Back">
-          <IconBack />
-        </Link>
+        <div className="invoice-app-bar-start">
+          <MobileNavToggle />
+          <Link to="/" className="icon-btn" aria-label="Back">
+            <IconBack />
+          </Link>
+        </div>
         <h1 className="invoice-app-title">Invoice</h1>
         <div className="invoice-app-spacer" aria-hidden />
       </header>
