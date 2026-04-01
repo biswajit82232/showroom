@@ -19,8 +19,9 @@ export function formatFYLabel(fyStartYear: number): string {
   return `FY ${fyStartYear}–${String(yy).padStart(2, '0')}`
 }
 
-/** Recent FY start years for dropdown (newest first). */
+/** Recent FY start years for dropdown (oldest first, **current FY last** at bottom). */
 export function fyYearOptions(count = 8): number[] {
   const c = fyStartYearForDate(new Date())
-  return Array.from({ length: count }, (_, i) => c - i)
+  const oldest = c - (count - 1)
+  return Array.from({ length: count }, (_, i) => oldest + i)
 }

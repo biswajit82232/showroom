@@ -1,6 +1,6 @@
 # Showroom — Invoices
 
-Mobile-first **invoice / payment tracker** for a showroom: list by month or financial year, record sales, track due amounts, call/WhatsApp links, optional **Supabase** cloud sync, **PWA** install support. Use the **grid icon** in the header to open the module sidebar (**Invoices** live; **Dashboard**, **Inventory**, **Capital**, **Assets**, **Balance sheet** are placeholders for now—see `src/lib/appNavItems.ts`).
+Mobile-first **invoice / payment tracker** for a showroom: list by month or financial year, record sales, track due amounts, call/WhatsApp links, optional **Supabase** cloud sync, **PWA** install support.
 
 ## Stack
 

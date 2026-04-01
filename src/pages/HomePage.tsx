@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { AppNavButton } from '../components/AppNavDrawer'
 import { useSalesOutlet } from '../hooks/useSalesOutlet'
 import {
   formatDateListLabel,
@@ -108,6 +107,13 @@ export function HomePage() {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [moreOpen, setMoreOpen] = useState(false)
 
+  const handlePeriodModeChange = (next: PeriodMode) => {
+    setPeriodMode(next)
+    if (next === 'fy') {
+      setFyYear(fyStartYearForDate(new Date()))
+    }
+  }
+
   const periodRows = useMemo(() => {
     if (periodMode === 'month') {
       return sales.filter((s) => monthKey(s.date) === month)
@@ -154,17 +160,14 @@ export function HomePage() {
   return (
     <div className="invoice-shell">
       <header className="invoice-app-bar">
-        <div className="invoice-app-bar-lead">
-          <AppNavButton />
-          <button
-            type="button"
-            className="icon-btn"
-            aria-label="Period and totals"
-            onClick={() => setDrawerOpen(true)}
-          >
-            <IconMenu />
-          </button>
-        </div>
+        <button
+          type="button"
+          className="icon-btn"
+          aria-label="Open menu"
+          onClick={() => setDrawerOpen(true)}
+        >
+          <IconMenu />
+        </button>
         <h1 className="invoice-app-title">Invoices</h1>
         <div className="invoice-app-actions">
           <button
@@ -342,7 +345,7 @@ export function HomePage() {
               <select
                 className="invoice-drawer-select"
                 value={periodMode}
-                onChange={(e) => setPeriodMode(e.target.value as PeriodMode)}
+                onChange={(e) => handlePeriodModeChange(e.target.value as PeriodMode)}
               >
                 <option value="month">Calendar month</option>
                 <option value="fy">Financial year (Apr–Mar)</option>
@@ -376,10 +379,6 @@ export function HomePage() {
               </label>
             )}
 
-            <p className="invoice-drawer-hint">
-              Totals below match the selected {periodMode === 'month' ? 'month' : 'financial year'}.
-            </p>
-
             <div className="invoice-drawer-stats">
               <div className="invoice-drawer-stat">
                 <span className="invoice-drawer-stat-label">Revenue</span>
@@ -394,6 +393,11 @@ export function HomePage() {
                 <span className="invoice-drawer-stat-value">{formatMoney(drawerTotals.out)}</span>
               </div>
             </div>
+
+            <p className="invoice-drawer-hint invoice-drawer-hint--after-stats">
+              Totals above match the selected {periodMode === 'month' ? 'month' : 'financial year'}.
+            </p>
+
             <Link
               to="/new"
               className="invoice-drawer-link"

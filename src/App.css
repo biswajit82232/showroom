@@ -86,19 +86,9 @@
   z-index: 50;
 }
 
-.invoice-app-bar-lead {
-  display: flex;
-  align-items: center;
-  gap: 0.1rem;
-  flex: 1 1 0;
-  justify-content: flex-start;
-  min-width: 0;
-}
-
 .invoice-app-title {
   margin: 0;
-  flex: 0 0 auto;
-  max-width: 42%;
+  flex: 1;
   text-align: center;
   font-size: 1rem;
   font-weight: 700;
@@ -110,14 +100,6 @@
   display: flex;
   align-items: center;
   gap: 0.05rem;
-  flex: 1 1 0;
-  justify-content: flex-end;
-  min-width: 0;
-}
-
-.invoice-app-bar-trail {
-  flex: 1 1 0;
-  min-width: 0;
 }
 
 .invoice-app-spacer {
@@ -647,11 +629,15 @@ a.icon-btn {
   color: var(--text-secondary);
 }
 
+.invoice-drawer-hint--after-stats {
+  margin: 0.5rem 0 0.95rem;
+}
+
 .invoice-drawer-stats {
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
-  margin-bottom: 1.1rem;
+  margin-bottom: 0;
   padding: 0.75rem 0.85rem;
   background: #f7f6fb;
   border-radius: var(--radius);
@@ -1105,132 +1091,9 @@ a.icon-btn {
   margin-top: 1rem;
 }
 
-/* —— App module nav (sidebar) —— */
-.app-nav-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 95;
-  background: rgba(0, 0, 0, 0.38);
-  border: none;
-  cursor: pointer;
-  animation: backdropIn var(--dur) var(--ease-out);
-}
-
-.app-nav-drawer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: min(18.5rem, 90vw);
-  z-index: 100;
-  background: var(--surface);
-  box-shadow: var(--shadow-md);
-  padding: 0.85rem 0.95rem;
-  padding-top: calc(0.85rem + env(safe-area-inset-top, 0px));
-  animation: drawerIn var(--dur) var(--ease-out);
-}
-
-.app-nav-drawer-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.35rem;
-}
-
-.app-nav-drawer-title {
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-.app-nav-drawer-sub {
-  margin: 0 0 0.65rem;
-  font-size: 0.625rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-}
-
-.app-nav-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
-.app-nav-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  padding: 0.65rem 0.55rem;
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  color: var(--text);
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: background var(--dur-fast) var(--ease-smooth);
-}
-
-.app-nav-row:hover {
-  background: rgba(0, 0, 0, 0.04);
-}
-
-.app-nav-row--active {
-  background: rgba(37, 99, 235, 0.09);
-  color: var(--tab-active);
-}
-
-.app-nav-row-label {
-  min-width: 0;
-}
-
-.app-nav-soon {
-  flex-shrink: 0;
-  font-size: 0.625rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-secondary);
-  padding: 0.2rem 0.45rem;
-  border: 1px solid var(--divider);
-  border-radius: 999px;
-}
-
-.coming-soon-body {
-  padding: 2rem 1.25rem 2.5rem;
-  text-align: center;
-}
-
-.coming-soon-pill {
-  display: inline-block;
-  margin: 0 0 0.85rem;
-  padding: 0.35rem 0.75rem;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  border: 1px solid var(--divider);
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.03);
-}
-
-.coming-soon-text {
-  margin: 0 0 1.25rem;
-  font-size: 0.9rem;
-  line-height: 1.45;
-  color: var(--text-secondary);
-  max-width: 18rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .invoice-drawer,
   .invoice-drawer-backdrop,
-  .app-nav-backdrop,
-  .app-nav-drawer,
   .modal-backdrop,
   .modal--invoice,
   .more-menu {
