@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { AppNavButton } from '../components/AppNavDrawer'
 import { SaleForm } from '../components/SaleForm'
 import { useSalesOutlet } from '../hooks/useSalesOutlet'
 import { isOverdueSale } from '../lib/invoiceFilters'
@@ -110,11 +111,14 @@ export function SaleDetailPage() {
     return (
       <div className="invoice-shell invoice-shell--detail">
         <header className="invoice-app-bar">
-          <Link to="/" className="icon-btn" aria-label="Back">
-            <IconBack />
-          </Link>
+          <div className="invoice-app-bar-lead">
+            <AppNavButton />
+            <Link to="/" className="icon-btn" aria-label="Back">
+              <IconBack />
+            </Link>
+          </div>
           <h1 className="invoice-app-title">Invoice</h1>
-          <div className="invoice-app-spacer" aria-hidden />
+          <div className="invoice-app-bar-trail" aria-hidden />
         </header>
         <div className="detail-fallback">
           <p className="detail-muted">Invoice not found.</p>
@@ -130,11 +134,14 @@ export function SaleDetailPage() {
     return (
       <div className="invoice-shell invoice-shell--detail">
         <header className="invoice-app-bar">
-          <Link to="/" className="icon-btn" aria-label="Back">
-            <IconBack />
-          </Link>
+          <div className="invoice-app-bar-lead">
+            <AppNavButton />
+            <Link to="/" className="icon-btn" aria-label="Back">
+              <IconBack />
+            </Link>
+          </div>
           <h1 className="invoice-app-title">Invoice</h1>
-          <div className="invoice-app-spacer" aria-hidden />
+          <div className="invoice-app-bar-trail" aria-hidden />
         </header>
         <div className="detail-fallback">
           <p className="detail-muted" aria-live="polite">
@@ -149,11 +156,14 @@ export function SaleDetailPage() {
     return (
       <div className="invoice-shell invoice-shell--detail">
         <header className="invoice-app-bar">
-          <Link to="/" className="icon-btn" aria-label="Back">
-            <IconBack />
-          </Link>
+          <div className="invoice-app-bar-lead">
+            <AppNavButton />
+            <Link to="/" className="icon-btn" aria-label="Back">
+              <IconBack />
+            </Link>
+          </div>
           <h1 className="invoice-app-title">Invoice</h1>
-          <div className="invoice-app-spacer" aria-hidden />
+          <div className="invoice-app-bar-trail" aria-hidden />
         </header>
         <div className="detail-fallback">
           <p className="detail-muted">Invoice not found.</p>
@@ -184,16 +194,19 @@ export function SaleDetailPage() {
     return (
       <div className="invoice-shell invoice-shell--detail">
         <header className="invoice-app-bar">
-          <button
-            type="button"
-            className="icon-btn"
-            aria-label="Cancel editing"
-            onClick={() => setEditing(false)}
-          >
-            <IconBack />
-          </button>
+          <div className="invoice-app-bar-lead">
+            <AppNavButton />
+            <button
+              type="button"
+              className="icon-btn"
+              aria-label="Cancel editing"
+              onClick={() => setEditing(false)}
+            >
+              <IconBack />
+            </button>
+          </div>
           <h1 className="invoice-app-title">Edit</h1>
-          <div className="invoice-app-spacer" aria-hidden />
+          <div className="invoice-app-bar-trail" aria-hidden />
         </header>
         <div className="detail-edit-body">
           <SaleForm
@@ -218,11 +231,14 @@ export function SaleDetailPage() {
   return (
     <div className="invoice-shell invoice-shell--detail">
       <header className="invoice-app-bar">
-        <Link to="/" className="icon-btn" aria-label="Back">
-          <IconBack />
-        </Link>
+        <div className="invoice-app-bar-lead">
+          <AppNavButton />
+          <Link to="/" className="icon-btn" aria-label="Back">
+            <IconBack />
+          </Link>
+        </div>
         <h1 className="invoice-app-title">Invoice</h1>
-        <div className="invoice-app-spacer" aria-hidden />
+        <div className="invoice-app-bar-trail" aria-hidden />
       </header>
 
       <div className="detail-body">

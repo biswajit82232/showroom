@@ -1,5 +1,8 @@
 import { BrowserRouter, Navigate, Outlet, Route, Routes } from 'react-router-dom'
+import { AppNavDrawer } from './components/AppNavDrawer'
+import { AppNavProvider } from './context/AppNavContext'
 import { useLocalSales } from './hooks/useLocalSales'
+import { ComingSoonPage } from './pages/ComingSoonPage'
 import { HomePage } from './pages/HomePage'
 import { NewSalePage } from './pages/NewSalePage'
 import { SaleDetailPage } from './pages/SaleDetailPage'
@@ -21,7 +24,10 @@ function RootLayout() {
           </button>
         </div>
       )}
-      <Outlet context={salesApi} />
+      <AppNavProvider>
+        <AppNavDrawer />
+        <Outlet context={salesApi} />
+      </AppNavProvider>
     </div>
   )
 }
@@ -32,6 +38,11 @@ export default function App() {
       <Routes>
         <Route element={<RootLayout />}>
           <Route path="/" element={<HomePage />} />
+          <Route path="/dashboard" element={<ComingSoonPage title="Dashboard" />} />
+          <Route path="/inventory" element={<ComingSoonPage title="Inventory" />} />
+          <Route path="/capital" element={<ComingSoonPage title="Capital" />} />
+          <Route path="/assets" element={<ComingSoonPage title="Assets" />} />
+          <Route path="/balance-sheet" element={<ComingSoonPage title="Balance sheet" />} />
           <Route path="/new" element={<NewSalePage />} />
           <Route path="/sale/:id" element={<SaleDetailPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />

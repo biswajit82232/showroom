@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { AppNavButton } from '../components/AppNavDrawer'
 import { useSalesOutlet } from '../hooks/useSalesOutlet'
 import {
   formatDateListLabel,
@@ -153,14 +154,17 @@ export function HomePage() {
   return (
     <div className="invoice-shell">
       <header className="invoice-app-bar">
-        <button
-          type="button"
-          className="icon-btn"
-          aria-label="Open menu"
-          onClick={() => setDrawerOpen(true)}
-        >
-          <IconMenu />
-        </button>
+        <div className="invoice-app-bar-lead">
+          <AppNavButton />
+          <button
+            type="button"
+            className="icon-btn"
+            aria-label="Period and totals"
+            onClick={() => setDrawerOpen(true)}
+          >
+            <IconMenu />
+          </button>
+        </div>
         <h1 className="invoice-app-title">Invoices</h1>
         <div className="invoice-app-actions">
           <button

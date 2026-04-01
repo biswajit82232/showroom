@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import { AppNavButton } from '../components/AppNavDrawer'
 import { SaleForm } from '../components/SaleForm'
 import { useSalesOutlet } from '../hooks/useSalesOutlet'
 import type { SaleRecord } from '../types/sale'
@@ -29,16 +30,19 @@ export function NewSalePage() {
   return (
     <div className="invoice-shell new-sale-shell">
       <header className="invoice-app-bar">
-        <button
-          type="button"
-          className="icon-btn"
-          aria-label="Back"
-          onClick={() => navigate(-1)}
-        >
-          <IconBack />
-        </button>
+        <div className="invoice-app-bar-lead">
+          <AppNavButton />
+          <button
+            type="button"
+            className="icon-btn"
+            aria-label="Back"
+            onClick={() => navigate(-1)}
+          >
+            <IconBack />
+          </button>
+        </div>
         <h1 className="invoice-app-title">New invoice</h1>
-        <div className="invoice-app-spacer" aria-hidden />
+        <div className="invoice-app-bar-trail" aria-hidden />
       </header>
       <div className="new-sale-body">
         <SaleForm key="new" isEditing={false} onSubmit={handleSubmit} />
