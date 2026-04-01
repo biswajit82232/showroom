@@ -1,73 +1,56 @@
-# React + TypeScript + Vite
+# Showroom — Invoices
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Mobile-first **invoice / payment tracker** for a showroom: list by month or financial year, record sales, track due amounts, call/WhatsApp links, optional **Supabase** cloud sync, **PWA** install support.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19, TypeScript, Vite 8, React Router 7  
+- Supabase (Postgres + anon/publishable key) when `VITE_*` env vars are set; otherwise **localStorage**  
+- Deploy: **Vercel** (see `vercel.json` SPA rewrite)  
+- DB schema: `supabase/migrations/20260401000000_sales.sql`
 
-## React Compiler
+## Scripts
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Command | Purpose |
+|--------|---------|
+| `npm run dev` | Local dev server |
+| `npm run build` | Typecheck + production build (`dist/`) |
+| `npm run preview` | Preview `dist/` locally |
+| `npm run lint` | ESLint |
+| `npm run deploy` | Manual production deploy via Vercel CLI (optional if Git auto-deploy is on) |
 
-## Expanding the ESLint configuration
+## Environment
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Copy `.env.example` → `.env.local`. Set:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- `VITE_SUPABASE_URL` — Supabase project URL  
+- `VITE_SUPABASE_ANON_KEY` — **Publishable** key (`sb_publishable_…`) or legacy **anon** JWT from the API settings page  
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+If either is missing, the app runs in **offline-first localStorage** mode only.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Deploy & security
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+See **[DEPLOY.md](./DEPLOY.md)** for Supabase SQL, Vercel env vars, PWA notes, and a **future data protection** checklist.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Repo
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Remote: [github.com/biswajit82232/showroom](https://github.com/biswajit82232/showroom). With Vercel **Git integration**, pushes to the production branch (e.g. `main`) trigger deploys.
+
+## How pieces connect
+
+```mermaid
+flowchart LR
+  subgraph client [Browser PWA]
+    App[React app]
+    LS[(localStorage)]
+  end
+  subgraph vercel [Vercel]
+    CDN[Static dist + SW]
+  end
+  subgraph supa [Supabase]
+    PG[(sales table)]
+  end
+  App --> CDN
+  App --> LS
+  App -->|if env set| PG
 ```

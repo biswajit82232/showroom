@@ -21,8 +21,10 @@ In the project on Vercel: **Settings → Environment Variables**:
 
 | Name | Value |
 |------|--------|
-| `VITE_SUPABASE_URL` | Project URL |
-| `VITE_SUPABASE_ANON_KEY` | anon public key |
+| `VITE_SUPABASE_URL` | Project URL (`https://….supabase.co`) |
+| `VITE_SUPABASE_ANON_KEY` | **Publishable** key (`sb_publishable_…`) or legacy **anon public** JWT |
+
+The app variable name stays `VITE_SUPABASE_ANON_KEY`; the value is whatever Supabase shows as the browser-safe client key.
 
 Redeploy after changing variables. Vite inlines `VITE_*` at build time, so they must be set for **Production** (and Preview if you use previews).
 
